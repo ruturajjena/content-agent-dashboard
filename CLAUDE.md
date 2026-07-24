@@ -56,5 +56,9 @@ ESLint, Prettier.
 - [x] Step 5 — Automation: npm run automate (scrape→report), npm run schedule (node-cron),
        .github/workflows/daily-report.yml (GitHub Actions, cron 30 3 * * 1,4 UTC = Mon&Thu)
        Schedule = twice/week (Mon & Thu 09:00) to conserve Apify credit (~$0.49/scrape)
+       Report job also commits fresh data.json + dispatches deploy-pages.yml (auto-refresh)
+- Deployed: public repo github.com/ruturajjena/content-agent-dashboard
+       Live dashboard on GitHub Pages: ruturajjena.github.io/content-agent-dashboard/
+       (deploy-pages.yml builds dashboard/ on push under dashboard/** or dispatch)
 - [x] Step 6 — End-to-end validation: data✓ typecheck✓ build✓ dashboard✓ telegram✓
        (console "invalid hook call" = stale pre-fix buffer artifacts, not live — verified clean)

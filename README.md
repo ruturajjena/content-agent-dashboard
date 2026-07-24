@@ -90,16 +90,17 @@ The dashboard is published at
 **https://ruturajjena.github.io/content-agent-dashboard/** via
 `.github/workflows/deploy-pages.yml` (rebuilds on any push under `dashboard/`).
 
-The published site reflects the committed `dashboard/data.json`. To refresh the
-public view with new data:
+The published site reflects the committed `dashboard/data.json`, and the
+**twice-weekly report job refreshes it automatically** — each run commits the
+new `data.json` and dispatches the Pages build, so the public dashboard stays
+current with no manual step.
+
+To refresh it yourself on demand:
 
 ```bash
 npm run scrape                     # fresh data (~$0.49)
 git commit -am "Refresh data" && git push   # triggers a Pages rebuild
 ```
-
-> Note: the twice-weekly Telegram job does **not** update the public dashboard
-> (it doesn't commit data back). Push a new `data.json` to refresh Pages.
 
 ## Build status
 
