@@ -10,8 +10,9 @@ dashboard/node_modules/
 # --- Generated data & reports ---
 data/*.json
 !data/.gitkeep
-dashboard/data.json
 dashboard/src/data.json
+# NOTE: dashboard/data.json IS committed so the GitHub Pages build has data.
+# It contains public Instagram post data + analysis and is world-visible on Pages.
 
 # --- Build output ---
 dist/

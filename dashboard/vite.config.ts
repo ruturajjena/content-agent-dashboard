@@ -4,7 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { resolve } from 'node:path';
 
 // Tailwind v4 runs as a Vite plugin (no separate postcss config needed).
-export default defineConfig({
+// `base` is set for the production build so assets resolve under the GitHub
+// Pages project path (username.github.io/content-agent-dashboard/).
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/content-agent-dashboard/' : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     // Recharts pulls React through nested deps; dedupe prevents a second
@@ -14,4 +17,4 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-});
+}));
