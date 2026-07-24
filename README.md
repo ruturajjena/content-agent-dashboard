@@ -1,5 +1,7 @@
 # Content Agent Dashboard
 
+**Live dashboard:** https://ruturajjena.github.io/content-agent-dashboard/
+
 An AI-powered content operations center for Instagram, built in three phases:
 
 1. **Content Intelligence Agent** — pulls my Instagram + competitor data (Apify).
@@ -81,6 +83,23 @@ npm run schedule            # fires at REPORT_CRON (Mon & Thu 09:00 local)
 `.github/workflows/daily-report.yml` runs the pipeline in the cloud on a
 schedule — no server, runs even when your laptop is off. Add these repo
 secrets: `APIFY_TOKEN`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+
+## Public dashboard (GitHub Pages)
+
+The dashboard is published at
+**https://ruturajjena.github.io/content-agent-dashboard/** via
+`.github/workflows/deploy-pages.yml` (rebuilds on any push under `dashboard/`).
+
+The published site reflects the committed `dashboard/data.json`. To refresh the
+public view with new data:
+
+```bash
+npm run scrape                     # fresh data (~$0.49)
+git commit -am "Refresh data" && git push   # triggers a Pages rebuild
+```
+
+> Note: the twice-weekly Telegram job does **not** update the public dashboard
+> (it doesn't commit data back). Push a new `data.json` to refresh Pages.
 
 ## Build status
 
