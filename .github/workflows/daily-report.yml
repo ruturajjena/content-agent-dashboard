@@ -1,0 +1,49 @@
+# Daily Content Agent report — runs the full pipeline in the cloud.
+#
+# Setup (one time):
+#   In your GitHub repo → Settings → Secrets and variables → Actions,
+#   add these repository secrets:
+#     APIFY_TOKEN, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+#
+# The schedule below is in UTC. 03:30 UTC ≈ 09:00 IST.
+# Runs twice a week (Mon & Thu) to conserve Apify credit.
+# Trigger it manually anytime from the Actions tab (workflow_dispatch).
+
+name: Content Agent Report
+
+on:
+  schedule:
+    - cron: '30 3 * * 1,4'
+  workflow_dispatch:
+    inputs:
+      skip_scrape:
+        description: 'Skip the Apify scrape (report from committed data only)'
+        type: boolean
+        default: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run daily pipeline
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          IG_USERNAME: builtbyruturaj
+          IG_COMPETITORS: ai.noobstoninjas,vaibhavsisinty,jerrythewebdev,gayatri.tech,web.love.ed
+        run: |
+          if [ "${{ inputs.skip_scrape }}" = "true" ]; then
+            npm run automate -- --skip-scrape
+          else
+            npm run automate
+          fi

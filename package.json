@@ -1,0 +1,40 @@
+{
+  "name": "content-agent-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Content Agent Dashboard — Instagram intelligence, five AI agents, and a Telegram reporter.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "scrape": "tsx scripts/scrape.ts",
+    "fetch": "tsx scripts/fetch-dataset.ts",
+    "typecheck": "tsc --noEmit -p scripts/tsconfig.json",
+    "dashboard": "npm --prefix dashboard run dev",
+    "telegram:chatid": "tsx scripts/telegram-chatid.ts",
+    "report": "tsx scripts/report.ts",
+    "automate": "tsx scripts/automate.ts",
+    "schedule": "tsx scripts/schedule.ts"
+  },
+  "keywords": [
+    "instagram",
+    "apify",
+    "dashboard",
+    "ai-agents",
+    "telegram"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "apify-client": "^2.12.0",
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/node-cron": "^3.0.11",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

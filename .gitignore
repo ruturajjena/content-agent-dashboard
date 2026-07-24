@@ -1,0 +1,28 @@
+# --- Secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- Dependencies ---
+node_modules/
+dashboard/node_modules/
+
+# --- Generated data & reports ---
+data/*.json
+!data/.gitkeep
+dashboard/data.json
+dashboard/src/data.json
+
+# --- Build output ---
+dist/
+dashboard/dist/
+*.tsbuildinfo
+
+# --- Logs ---
+*.log
+npm-debug.log*
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
+.idea/
